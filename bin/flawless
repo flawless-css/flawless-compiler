@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+
+/**
+ * Flawless
+ * ---
+ *
+ * @flag -s --silent suppresses output logs
+ * @argument filename to parse and compile
+ *
+ * @usage
+ * flawless ./spec/fixtures.less
+ * flawless < ./spec/fixtures.less > test.css
+ */
+
+var fs = require( 'fs' );
+var path = require( 'path' );
+
+var chalk = require( 'chalk' );
+var argv = require( 'minimist' )( process.argv.slice( 2 ) )
+var Flawless = require( '../dist' )
+var flawless = new Flawless()
+var log = require( '../dist/log' )
+
+
+// Suppress logs by default
+log.suppress( true )
+
+
+// Check for file
+var filepath
+var file = argv._[ 0 ]
+if ( file ) {
+    filepath = path.join( process.env.PWD, file )
+    try {
+        fs.stat( filepath, function() {
+            fs.readFile( filepath, function( err, res ) {
+                // Writing to file so log away
+                if ( !argv.s && !argv.silent ) log.suppress( false )
+                flawless.compile( res )
+            })
+        })
+    } catch( err ) {
+        console.error( 'Can not find input file' )
+    }
+}
+
+// Pipe input
+if ( !file ) {
+    var chunk
+    var read = ''
+    process.stdin
+        .on( 'readable', function() {
+            chunk = process.stdin.read()
+            if ( chunk !== null ) {
+                read += chunk
+            }
+        })
+        .on( 'end', function() {
+            flawless.compile( read )
+        })
+}

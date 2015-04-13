@@ -1,5 +1,6 @@
 {
   "name": "flawless-compile",
+  "shortname": "flawless",
   "version": "0.0.0",
   "description": "Less compilation for flawless builds",
   "main": "dist/index.js",
@@ -29,5 +30,10 @@
   "devDependencies": {
     "babel": "^5.1.1",
     "tape": "^4.0.0"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "less": "^2.5.0",
+    "minimist": "^1.1.1"
   }
 }
