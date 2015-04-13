@@ -21,10 +21,12 @@ var Flawless = require( '../dist' )
 var log = require( '../dist/log' )
 
 var paths = argv.p || argv.paths || null
+var compress = argv.c || argv.compress
 
 // Create the flawless object
 var flawless = new Flawless({
-    paths: paths ? paths.split( ',' ) : null
+    paths: paths ? paths.split( ',' ) : null,
+    compress: compress
 })
 
 
