@@ -31,33 +31,15 @@ var filepath
 var file = argv._[ 0 ]
 if ( file ) {
     filepath = path.join( process.env.PWD, file )
-    try {
-        fs.stat( filepath, function() {
-            fs.readFile( filepath, function( err, res ) {
-                // Writing to file so log away
-                if ( !argv.s && !argv.silent ) log.suppress( false )
-                flawless.compile( res )
-            })
-        })
-    } catch( err ) {
-        console.error( 'Can not find input file' )
-    }
+    fs.stat( filepath, function( err ) {
+        if ( err ) return console.error( 'Input file not found' )
+        if ( !argv.s && !argv.silent ) log.suppress( false )
+        fs.createReadStream( filepath )
+            .pipe( flawless )
+    })
 }
 
 // Pipe input
 if ( !file ) {
     process.stdin.pipe( flawless )
-
-    // var chunk
-    // var read = ''
-    // process.stdin
-    //     .on( 'readable', function() {
-    //         chunk = process.stdin.read()
-    //         if ( chunk !== null ) {
-    //             read += chunk
-    //         }
-    //     })
-    //     .on( 'end', function() {
-    //         flawless.compile( read )
-    //     })
 }
