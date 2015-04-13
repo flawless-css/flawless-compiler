@@ -38,14 +38,15 @@ var file = argv._[ 0 ]
 if ( file ) {
     filepath = path.join( process.env.PWD, file )
     fs.stat( filepath, function( err ) {
-        if ( err ) return console.error( 'Input file not found' )
         if ( !argv.s && !argv.silent ) log.suppress( false )
+        if ( err ) return log.error( 'Input file not found' )
         fs.createReadStream( filepath )
             .pipe( flawless )
+            .pipe( process.stdout )
     })
 }
 
 // Pipe input
 if ( !file ) {
-    process.stdin.pipe( flawless )
+    process.stdin.pipe( flawless ).pipe( process.stdout )
 }
