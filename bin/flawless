@@ -60,8 +60,11 @@ if ( file ) {
         if ( !argv.s && !argv.silent ) log.suppress( false )
         if ( err ) return log.error( 'Input file not found' )
         fs.createReadStream( filepath )
-            .pipe( flawless )
+            .pipe( flawless.on( 'error', function( err ) {
+                log.error( err )
+            }))
             .pipe( process.stdout )
+
     })
 }
 

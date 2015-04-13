@@ -12,8 +12,8 @@ var flawless = new Flawless({
     sourcemap: true
 });
 
-flawless.compile( file, function( res ) {
+flawless.compile( file, function onCompile( err, res ) {
     console.log( 'compiled' )
-    console.log( res )
+    console.log( err, res )
     // fs.writeFileSync( './test.css', res.css )
 })
