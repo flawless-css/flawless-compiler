@@ -1,0 +1,33 @@
+{
+  "name": "flawless-compile",
+  "version": "0.0.0",
+  "description": "Less compilation for flawless builds",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "tape ./spec/*.js",
+    "build": "rm -rf dist && babel lib --out-dir dist",
+    "watch": "babel --watch lib --out-dir dist",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattstyles/flawless-compile.git"
+  },
+  "keywords": [
+    "flawless",
+    "less",
+    "compile",
+    "css",
+    "build"
+  ],
+  "author": "Matt Styles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattstyles/flawless-compile/issues"
+  },
+  "homepage": "https://github.com/mattstyles/flawless-compile",
+  "devDependencies": {
+    "babel": "^5.1.1",
+    "tape": "^4.0.0"
+  }
+}
