@@ -18,8 +18,14 @@ var path = require( 'path' );
 var chalk = require( 'chalk' );
 var argv = require( 'minimist' )( process.argv.slice( 2 ) )
 var Flawless = require( '../dist' )
-var flawless = new Flawless()
 var log = require( '../dist/log' )
+
+var paths = argv.p || argv.paths || null
+
+// Create the flawless object
+var flawless = new Flawless({
+    paths: paths ? paths.split( ',' ) : null
+})
 
 
 if ( process.stdin.isTTY && !argv._[ 0 ] ) {

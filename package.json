@@ -3,6 +3,9 @@
   "shortname": "flawless",
   "version": "0.0.0",
   "description": "Less compilation for flawless builds",
+  "bin": {
+    "flawless": "./bin/flawless"
+  },
   "main": "dist/index.js",
   "scripts": {
     "test": "tape ./spec/*.js",
@@ -33,6 +36,7 @@
   },
   "dependencies": {
     "chalk": "^1.0.0",
+    "core-js": "^0.8.2",
     "less": "^2.5.0",
     "minimist": "^1.1.1"
   }
