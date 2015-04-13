@@ -33,6 +33,7 @@
   "homepage": "https://github.com/mattstyles/flawless-compile",
   "devDependencies": {
     "babel": "^5.1.1",
+    "osenv": "^0.1.0",
     "tape": "^4.0.0"
   },
   "dependencies": {
