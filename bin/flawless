@@ -4,12 +4,16 @@
  * Flawless
  * ---
  *
- * @flag -s --silent suppresses output logs
  * @argument filename to parse and compile
+ * @flag -s --silent suppresses output logs
+ * @flag -c --compress use less compression
+ * @flag -p --paths specify import paths
+ * @flag --source-map include inline source map
  *
  * @usage
  * flawless ./spec/fixtures.less
  * flawless < ./spec/fixtures.less > test.css
+ * flawless ./src/styles.less -p ./src/ -c --source-map > ./public/styles.css
  */
 
 var fs = require( 'fs' );
@@ -20,16 +24,23 @@ var argv = require( 'minimist' )( process.argv.slice( 2 ) )
 var Flawless = require( '../dist' )
 var log = require( '../dist/log' )
 
+// Less render options
 var paths = argv.p || argv.paths || null
 var compress = argv.c || argv.compress
+var filename = argv._[ 0 ]
+var sourcemap = argv[ 'source-map' ]
+
 
 // Create the flawless object
 var flawless = new Flawless({
     paths: paths ? paths.split( ',' ) : null,
-    compress: compress
+    compress: compress,
+    filename: filename,
+    sourcemap: sourcemap
 })
 
 
+// Try to check that an input is present
 if ( process.stdin.isTTY && !argv._[ 0 ] ) {
     log.error( 'Supply input file' )
     process.exit( 1 )
@@ -40,7 +51,7 @@ if ( process.stdin.isTTY && !argv._[ 0 ] ) {
 log.suppress( true )
 
 
-// Check for file
+// Pipe specified file
 var filepath
 var file = argv._[ 0 ]
 if ( file ) {
