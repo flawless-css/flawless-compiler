@@ -28,7 +28,7 @@ var log = require( '../dist/log' )
 var paths = argv.p || argv.paths || null
 var compress = argv.c || argv.compress
 var filename = argv._[ 0 ]
-var sourcemap = argv[ 'source-map' ]
+var sourceMap = argv[ 'source-map' ]
 
 
 // Create the flawless object
@@ -36,7 +36,7 @@ var flawless = new Flawless({
     paths: paths ? paths.split( ',' ) : null,
     compress: compress,
     filename: filename,
-    sourcemap: sourcemap
+    sourceMap: sourceMap
 })
 
 
