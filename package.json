@@ -22,7 +22,8 @@
     "less",
     "compile",
     "css",
-    "build"
+    "build",
+    "cli"
   ],
   "author": "Matt Styles",
   "license": "ISC",
