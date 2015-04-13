@@ -22,6 +22,12 @@ var flawless = new Flawless()
 var log = require( '../dist/log' )
 
 
+if ( process.stdin.isTTY && !argv._[ 0 ] ) {
+    log.error( 'Supply input file' )
+    process.exit( 1 )
+}
+
+
 // Suppress logs by default
 log.suppress( true )
 
