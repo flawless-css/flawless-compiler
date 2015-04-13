@@ -46,16 +46,18 @@ if ( file ) {
 
 // Pipe input
 if ( !file ) {
-    var chunk
-    var read = ''
-    process.stdin
-        .on( 'readable', function() {
-            chunk = process.stdin.read()
-            if ( chunk !== null ) {
-                read += chunk
-            }
-        })
-        .on( 'end', function() {
-            flawless.compile( read )
-        })
+    process.stdin.pipe( flawless )
+
+    // var chunk
+    // var read = ''
+    // process.stdin
+    //     .on( 'readable', function() {
+    //         chunk = process.stdin.read()
+    //         if ( chunk !== null ) {
+    //             read += chunk
+    //         }
+    //     })
+    //     .on( 'end', function() {
+    //         flawless.compile( read )
+    //     })
 }
