@@ -27,7 +27,7 @@ var log = require( '../dist/log' )
 // Less render options
 var paths = argv.p || argv.paths || null
 var compress = argv.c || argv.compress
-var filename = argv._[ 0 ]
+var filename = argv._[ 0 ] || argv.e
 var sourceMap = argv[ 'source-map' ]
 
 
@@ -53,9 +53,8 @@ log.suppress( true )
 
 // Pipe specified file
 var filepath
-var file = argv._[ 0 ]
-if ( file ) {
-    filepath = path.join( process.env.PWD, file )
+if ( filename ) {
+    filepath = path.join( process.env.PWD, filename )
     fs.stat( filepath, function( err ) {
         if ( !argv.s && !argv.silent ) log.suppress( false )
         if ( err ) return log.error( 'Input file not found' )
@@ -69,6 +68,6 @@ if ( file ) {
 }
 
 // Pipe input
-if ( !file ) {
+if ( !filename ) {
     process.stdin.pipe( flawless ).pipe( process.stdout )
 }
