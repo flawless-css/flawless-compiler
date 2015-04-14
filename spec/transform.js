@@ -18,7 +18,7 @@ test( 'The long way - pass in a whole file', function( t ) {
 
     flawless.compile( file, function onCompile( err, res ) {
         t.equal( res.css, fixtureCompiled, 'should perform basic single file less compilation from passing in a file' )
-    });
+    })
 })
 
 
