@@ -1,5 +1,5 @@
 {
-  "name": "flawless-compile",
+  "name": "flawless-compiler",
   "shortname": "flawless",
   "version": "0.2.0",
   "description": "Less compilation for flawless builds",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mattstyles/flawless-compile.git"
+    "url": "git://github.com/flawless/flawless-compiler.git"
   },
   "keywords": [
     "flawless",
@@ -28,9 +28,9 @@
   "author": "Matt Styles",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mattstyles/flawless-compile/issues"
+    "url": "https://github.com/flawless/flawless-compiler/issues"
   },
-  "homepage": "https://github.com/mattstyles/flawless-compile",
+  "homepage": "https://github.com/flawless/flawless-compiler",
   "devDependencies": {
     "babel": "^5.1.1",
     "osenv": "^0.1.0",

@@ -1,4 +1,4 @@
-# flawless-compile
+# flawless-compiler
 
 > Less compilation for flawless builds
 
@@ -6,7 +6,7 @@
 ## Getting Started
 
 ```shell
-npm i -D flawless-compile
+npm i -D flawless-compiler
 ```
 
 Flawless is a class so create a new instance and throw some less at it
