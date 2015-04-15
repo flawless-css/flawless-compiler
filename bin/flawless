@@ -69,5 +69,8 @@ if ( filename ) {
 
 // Pipe input
 if ( !filename ) {
-    process.stdin.pipe( flawless ).pipe( process.stdout )
+    process.stdin.pipe( flawless.on( 'error', function( err ) {
+            log.error( err )
+        }))
+        .pipe( process.stdout )
 }
