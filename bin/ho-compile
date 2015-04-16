@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Flawless
+ * ho
  * ---
  *
  * @argument filename to parse and compile
@@ -11,9 +11,9 @@
  * @flag --source-map include inline source map
  *
  * @usage
- * flawless ./spec/fixtures.less
- * flawless < ./spec/fixtures.less > test.css
- * flawless ./src/styles.less -p ./src/ -c --source-map > ./public/styles.css
+ * ho ./spec/fixtures.less
+ * ho < ./spec/fixtures.less > test.css
+ * ho ./src/styles.less -p ./src/ -c --source-map > ./public/styles.css
  */
 
 var fs = require( 'fs' );
@@ -21,7 +21,7 @@ var path = require( 'path' );
 
 var chalk = require( 'chalk' );
 var argv = require( 'minimist' )( process.argv.slice( 2 ) )
-var Flawless = require( '../dist' )
+var Compiler = require( '../dist' )
 var log = require( '../dist/log' )
 
 // Less render options
@@ -31,12 +31,16 @@ var filename = argv._[ 0 ] || argv.e
 var sourceMap = argv[ 'source-map' ]
 
 
-// Create the flawless object
-var flawless = new Flawless({
+// Create the ho object
+var compiler = new Compiler({
     paths: paths ? paths.split( ',' ) : null,
     compress: compress,
     filename: filename,
     sourceMap: sourceMap
+})
+
+compiler.on( 'error', function( err ) {
+    log.error( err )
 })
 
 
@@ -56,12 +60,15 @@ var filepath
 if ( filename ) {
     filepath = path.join( process.env.PWD, filename )
     fs.stat( filepath, function( err ) {
-        if ( !argv.s && !argv.silent ) log.suppress( false )
-        if ( err ) return log.error( 'Input file not found' )
+        if ( !argv.s && !argv.silent ) {
+            log.suppress( false )
+        }
+        if ( err ) {
+            return log.error( 'Input file not found' )
+        }
+
         fs.createReadStream( filepath )
-            .pipe( flawless.on( 'error', function( err ) {
-                log.error( err )
-            }))
+            .pipe( compiler )
             .pipe( process.stdout )
 
     })
@@ -69,8 +76,7 @@ if ( filename ) {
 
 // Pipe input
 if ( !filename ) {
-    process.stdin.pipe( flawless.on( 'error', function( err ) {
-            log.error( err )
-        }))
+    process.stdin
+        .pipe( compiler )
         .pipe( process.stdout )
 }

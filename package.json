@@ -1,10 +1,10 @@
 {
-  "name": "flawless-compiler",
-  "shortname": "flawless",
+  "name": "ho-compiler",
+  "shortname": "ho",
   "version": "0.3.0",
-  "description": "Less compilation for flawless builds",
+  "description": "Less compilation for ho builds",
   "bin": {
-    "flawless": "./bin/flawless"
+    "ho-compile": "./bin/ho-compile"
   },
   "main": "dist/index.js",
   "scripts": {
@@ -15,10 +15,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/flawless/flawless-compiler.git"
+    "url": "git://github.com/hocss/ho-compiler.git"
   },
   "keywords": [
-    "flawless",
+    "ho",
     "less",
     "compile",
     "css",
@@ -28,9 +28,9 @@
   "author": "Matt Styles",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/flawless/flawless-compiler/issues"
+    "url": "https://github.com/hocss/ho-compiler/issues"
   },
-  "homepage": "https://github.com/flawless/flawless-compiler",
+  "homepage": "https://github.com/hocss/ho-compiler",
   "devDependencies": {
     "babel": "^5.1.1",
     "osenv": "^0.1.0",

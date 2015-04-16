@@ -1,24 +1,24 @@
-# flawless-compiler
+# Ho-compiler
 
-> Less compilation for flawless builds
+> Less compilation transform
 
 
 ## Getting Started
 
 ```shell
-npm i -D flawless-compiler
+npm i -D ho-compiler
 ```
 
-Flawless is a class so create a new instance and throw some less at it
+Compiler is a class so create a new instance and throw some less at it
 
 ```js
-var Flawless = require( 'flawless-compile' )
+var Compiler = require( 'ho-compile' )
 var fs = require( 'fs' )
 
-var flawless = new Flawless()
+var compiler = new Compiler()
 var file = fs.readFileSync( 'styles.less' )
 
-flawless.compile( file, function onCompile( err, output ) {
+compiler.compile( file, function onCompile( err, output ) {
   fs.writeFileSync( 'styles.css', output.css )
 })
 ```
@@ -26,20 +26,20 @@ flawless.compile( file, function onCompile( err, output ) {
 But reading and writing files like that is a little cumbersome, do yourself a favour and just pipe stuff in and out
 
 ```js
-var Flawless = require( 'flawless-compile' )
+var Compiler = require( 'ho-compile' )
 var fs = require( 'fs' )
 
-var flawless = new Flawless()
+var compiler = new Compiler()
 
 fs.createReadStream( 'styles.less' )
-  .pipe( flawless )
+  .pipe( compiler )
   .pipe( fs.createWriteStream( 'styles.css' ) )
 ```
 
 ### Compile options
 
 ```js
-new Flawless({
+new Compiler({
   paths: [
     './src/',
     './node_modules/'
@@ -49,7 +49,7 @@ new Flawless({
   sourceMap: true
 })
 
-fs.createReadStream( 'styles.less' ).pipe( flawless )
+fs.createReadStream( 'styles.less' ).pipe( compiler )
 ```
 
 These are all standard less compile options, with the exception of `sourceMap` which is a `boolean` and will append the whole source map to the output.
@@ -57,17 +57,17 @@ These are all standard less compile options, with the exception of `sourceMap` w
 
 ## CLI
 
-Specify a file as input or pipe into flawless, either way you can redirect the output where you need it
+Specify a file as input or pipe into the compiler, either way you can redirect the output where you need it
 
 ```shell
-flawless styles.less > styles.css
-flawless < styles.less > styles.css
+ho-compile styles.less > styles.css
+ho-compile < styles.less > styles.css
 ```
 
-Most of the options are used to instantiate the flawless constructor
+Most of the options are used to instantiate the Compiler constructor
 
 ```
-flawless styles.less -p src/,node_modules/ -c --source-map > styles.css
+ho-compile styles.less -p src/,node_modules/ -c --source-map > styles.css
 ```
 
 
