@@ -16,10 +16,10 @@
  * ho ./src/styles.less -p ./src/ -c --source-map > ./public/styles.css
  */
 
-var fs = require( 'fs' );
-var path = require( 'path' );
+var fs = require( 'fs' )
+var path = require( 'path' )
 
-var chalk = require( 'chalk' );
+var chalk = require( 'chalk' )
 var argv = require( 'minimist' )( process.argv.slice( 2 ) )
 var Compiler = require( '../dist' )
 var log = require( '../dist/log' )
