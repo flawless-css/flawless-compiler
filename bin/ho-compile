@@ -50,6 +50,9 @@ if ( process.stdin.isTTY && !argv._[ 0 ] ) {
     process.exit( 1 )
 }
 
+// Display deprecation message
+process.stderr.write( 'ho-compile is deprecated, use https://github.com/hocss/ho instead' )
+
 
 // Suppress logs by default
 log.suppress( true )
