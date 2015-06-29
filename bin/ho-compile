@@ -5,6 +5,7 @@
  * ---
  *
  * @argument filename to parse and compile
+ * @flag -e --entry filename to parse and compile
  * @flag -s --silent suppresses output logs
  * @flag -c --compress use less compression
  * @flag -p --paths specify import paths
@@ -16,10 +17,9 @@
  * ho ./src/styles.less -p ./src/ -c --source-map > ./public/styles.css
  */
 
-var fs = require( 'fs' );
-var path = require( 'path' );
+var fs = require( 'fs' )
+var path = require( 'path' )
 
-var chalk = require( 'chalk' );
 var argv = require( 'minimist' )( process.argv.slice( 2 ) )
 var Compiler = require( '../dist' )
 var log = require( '../dist/log' )
@@ -27,7 +27,7 @@ var log = require( '../dist/log' )
 // Less render options
 var paths = argv.p || argv.paths || null
 var compress = argv.c || argv.compress
-var filename = argv._[ 0 ] || argv.e
+var filename = argv._[ 0 ] || argv.e || argv.entry
 var sourceMap = argv[ 'source-map' ]
 
 
