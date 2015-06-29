@@ -57,18 +57,7 @@ These are all standard less compile options, with the exception of `sourceMap` w
 
 ## CLI
 
-Specify a file as input or pipe into the compiler, either way you can redirect the output where you need it
-
-```shell
-ho-compile styles.less > styles.css
-ho-compile < styles.less > styles.css
-```
-
-Most of the options are used to instantiate the Compiler constructor
-
-```
-ho-compile styles.less -p src/,node_modules/ -c --source-map > styles.css
-```
+As of version `0.5.0` the CLI was deprecated, use [ho](https://github.com/hocss/ho) instead.
 
 
 ## Contributing
